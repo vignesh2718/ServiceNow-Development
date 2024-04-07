@@ -34,6 +34,7 @@ Here are some different functions (or tools) you can use with GlideSystem:
 Remember, you can use these functions to interact with the system and get useful information or perform actions. They're like tools in a toolbox, each serving a different purpose.
 
 **EXAMPLES**
+```` javascript
 // Example of gs.log()
 // This function is used to log information about events or actions in the system.
 
@@ -55,3 +56,4 @@ if (current.u_required_field.nil()) {
 // Log information about the current scope name.
 var currentScope = gs.getCurrentScopeName();
 gs.info("Currently working in the scope: " + currentScope);
+```
