@@ -83,6 +83,12 @@ gr.query();
 while(gr.next()){
        gr.short_description = 'testing trail';
 	   gr.update();
+
+or 
+var gr = new GlideRecord('incident');
+gr.addQuery('short_description','testing trail');
+gr.setValue('short_description','ServiceNow Developer');
+gr.updateMultiple();
 }
 ```
 
