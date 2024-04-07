@@ -2,6 +2,7 @@
 
 #### Introduction
 In simple terms, this document explains how to use the GlideForm object (g_form) in ServiceNow to modify forms on your website. GlideForm is like a magic wand that allows you to change the appearance and behavior of forms (like those you fill out online) without having to write a lot of complex code.
+which includes the onLoad(), onCellEdit(), onSubmit(), and onChange() functions.
 
 #### Function Explanation
 The `onLoad()` function is a special function in ServiceNow that automatically runs when a form loads. This means when you open a page with a form, the code inside the `onLoad()` function starts working right away.
