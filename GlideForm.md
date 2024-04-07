@@ -30,6 +30,27 @@ Let's break down the code inside the `onLoad()` function:
      - Changing the label of the 'description' field to 'Issue Details'.
      - Hiding the 'incident' related list.
      - Changing the background color of the 'state' field to light green.
+```javascript
+function onLoad() {
+//    g_form.addDecoration('category','icon-lightblub','lightblub','color-yellow');
+//    g_form.addErrorMessage('Error');
+      var value= g_form.getDisplayBox('caller_id').value;
+	  if(value=='Abel Tuter'){
+		// g_form.addOption('category','tech_issue','Tech Issue');
+		// g_form.removeOption('category','software');
+		// g_form.clearOptions('category');
+		// g_form.disableAttachments();
+		// g_form.setMandatory('cmdb_ci',true);
+		// g_form.setDisabled('service_offering',true);
+		// g_form.setDisplay('business_service',false);
+	//	g_form.setLabelOf('description','Issue Details');
+		// g_form.hideRelatedList('incident');
+	//	g_form.getElement('state').style.background='lightgreen';
+	  }
+
+    
+}
+```
 
 #### Conclusion
  This code uses the GlideForm object to make various changes to a form based on certain conditions. It's like customizing a form to fit specific needs or preferences without needing to be a coding expert.
