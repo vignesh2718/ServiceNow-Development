@@ -45,10 +45,10 @@ while (gr.next()) {
     gs.info('Incident: ' + gr.number + ', Priority: ' + gr.priority);
 }
 ```
-```
+```javascript
 // Creating a GlideRecord object for the 'incident' table
 var gr = new GlideRecord('incident');
-
+gr.addQuery('priority',1)
 // Executing the query
 gr.query();
 
@@ -57,6 +57,35 @@ if (gr.next()) {
     gs.info("At least one incident exists.");
 }
 ```
+```javascript
+//to insert a incident 
+var gr = new GlideRecord('incident');
+gr.initialize();
+gr.caller_id=gs.getUserID();
+gr.short_description='testing';
+gr.assigned_group= 'd625dccec0a8016700a222a0f7900d06';
+gr.insert();
+
+or 
+
+var gr = new GlideRecord('incident');
+gr.initialize();
+gr.caller_id='Vignesh';
+gr.short_description='testing';
+gr.insert();
+gr.info(gr.number);
+
+
+// to update the incident
+var gr = new GlideRecord('incident');
+gr.addQuery('short_description','testing');
+gr.query();
+while(gr.next()){
+       gr.short_description = 'testing trail';
+	   gr.update();
+}
+```
+
 
 In simpler terms, this script sets up a search for incidents with a priority of 1, then loops through each matching incident, printing out its number and priority.
 
