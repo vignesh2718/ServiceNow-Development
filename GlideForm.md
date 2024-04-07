@@ -1,4 +1,4 @@
-### README: Using GlideForm (g_form) in Layman's Terms
+### Using GlideForm (g_form)
 
 #### Introduction
 In simple terms, this document explains how to use the GlideForm object (g_form) in ServiceNow to modify forms on your website. GlideForm is like a magic wand that allows you to change the appearance and behavior of forms (like those you fill out online) without having to write a lot of complex code.
