@@ -32,3 +32,26 @@ Here are some different functions (or tools) you can use with GlideSystem:
 9. **gs.getProperty()**: This function is for fetching properties or settings from the system. It's like asking the system for specific information it's stored.
 
 Remember, you can use these functions to interact with the system and get useful information or perform actions. They're like tools in a toolbox, each serving a different purpose.
+
+**EXAMPLES**
+// Example of gs.log()
+// This function is used to log information about events or actions in the system.
+
+// Log a message indicating that a user has been successfully logged in.
+var loggedInUser = gs.getUserDisplayName();
+gs.log("User " + loggedInUser + " has logged in successfully.");
+
+// Example of gs.error()
+// This function is used to log errors or problems that occur in the system.
+
+// Check if a required field is empty. If empty, log an error.
+if (current.u_required_field.nil()) {
+    gs.error("Required field is empty for record with ID: " + current.sys_id);
+}
+
+// Example of gs.info()
+// This function is used to log general information about what's happening in the system.
+
+// Log information about the current scope name.
+var currentScope = gs.getCurrentScopeName();
+gs.info("Currently working in the scope: " + currentScope);
