@@ -45,6 +45,18 @@ while (gr.next()) {
     gs.info('Incident: ' + gr.number + ', Priority: ' + gr.priority);
 }
 ```
+```
+// Creating a GlideRecord object for the 'incident' table
+var gr = new GlideRecord('incident');
+
+// Executing the query
+gr.query();
+
+// Checking if there are any results
+if (gr.next()) {
+    gs.info("At least one incident exists.");
+}
+```
 
 In simpler terms, this script sets up a search for incidents with a priority of 1, then loops through each matching incident, printing out its number and priority.
 
