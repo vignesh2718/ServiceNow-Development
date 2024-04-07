@@ -54,3 +54,4 @@ function onLoad() {
 
 #### Conclusion
  This code uses the GlideForm object to make various changes to a form based on certain conditions. It's like customizing a form to fit specific needs or preferences without needing to be a coding expert.
+https://developer.servicenow.com/dev.do#!/reference/api/utah/client/c_GlideFormAPI#r_GlideForm-AddDecoration_S_S_S 
