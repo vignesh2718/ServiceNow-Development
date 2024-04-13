@@ -2,7 +2,7 @@
 
 ### Business Rules
 
-A business rule is a piece of logic or functionality implemented within a system to automate processes or enforce policies. In the context of this document, we'll focus on a specific business rule that triggers actions based on changes to the priority of a problem record.
+Business rules are implemented within a system to automate processes or enforce policies. In this document, we'll discuss two specific business rules related to incident and problem management.
 
 ### Use Cases
 
@@ -27,22 +27,24 @@ A business rule is a piece of logic or functionality implemented within a system
 })(current, previous);
 ```
 
-#### Use Case 2: Custom Actions Based on Priority Change
+#### Use Case 2: Syncing Work Notes between Incident and Problem Records
 
 **Description:**
-- Depending on the priority change, different actions can be triggered, such as notifying specific stakeholders, escalating the issue, or updating related records.
+- When the work notes for an incident record change, the same work notes should be updated in the associated problem record as well.
 
-**Example:**
-- If priority changes from "High" to "Critical", notify the incident manager and escalate the issue to the higher management.
-
-#### Use Case 3: Priority-based Routing of Tasks
-
-**Description:**
-- Priority changes can also trigger routing of tasks to different teams or individuals responsible for handling issues of varying urgency.
-
-**Example:**
-- If priority changes to "Critical", assign the task to the senior support engineer for immediate attention.
+**Business Rule Implementation:**
+```javascript
+(function executeRule(current, previous /*null when async*/) {
+     var gr = new GlideRecord('problem');
+	 gr.addQuery('sys_id',current.problem_id);
+	 gr.query();
+	 if(gr.next()){
+		gr.work_notes=current.work_notes.getJournalEntry(1);
+	 }
+	 gr.update();
+})(current, previous);
+```
 
 ### Conclusion
 
-These use cases illustrate how a business rule can be utilized to automate processes and streamline workflow based on changes in priority within a problem management system. Each use case demonstrates a different aspect of how such a rule can be applied to enhance efficiency and ensure timely resolution of critical issues.
+These use cases demonstrate how business rules can be utilized within incident and problem management systems to automate processes and ensure data consistency between related records. By implementing these rules, organizations can improve efficiency and reduce manual effort in managing incidents and problems effectively.
