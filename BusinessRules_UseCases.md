@@ -1,8 +1,12 @@
 ## Business Rules and Use Cases
 
+### Overview
+
+This readme.md file outlines the functionality of three business rules and describes specific use cases related to each.
+
 ### Business Rules
 
-Business rules are implemented within a system to automate processes or enforce policies. In this document, we'll discuss two specific business rules related to incident and problem management.
+Business rules are implemented within a system to automate processes or enforce policies. In this document, we'll discuss three specific business rules related to incident and problem management.
 
 ### Use Cases
 
@@ -42,6 +46,25 @@ Business rules are implemented within a system to automate processes or enforce 
 		gr.work_notes=current.work_notes.getJournalEntry(1);
 	 }
 	 gr.update();
+})(current, previous);
+```
+
+#### Use Case 3: Tracking Associate Incident Count in Problem Records
+
+**Description:**
+- A field named "Associate Incident Count" will be created in the Problem table.
+- When an incident is attached to a problem record, the count of associated incidents will increase.
+
+**Business Rule Implementation:**
+```javascript
+(function executeRule(current, previous /*null when async*/) {
+    var gr = new GlideRecord('problem');
+    gr.addQuery('sys_id', current.problem_id);
+    gr.query();
+    if (gr.next()) {
+        gr.u_associate_incident_count = gr.u_associate_incident_count + 1;
+    }
+    gr.update();
 })(current, previous);
 ```
 
