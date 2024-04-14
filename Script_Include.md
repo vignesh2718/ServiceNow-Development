@@ -111,6 +111,70 @@ defineClass.prototype = {
 
 
 3. **Extend an Existing Class**: Script Includes can also extend an existing JavaScript class to add additional functionality or override existing methods.
+### Extending an Existing Class
+Extending an existing class allows you to inherit methods and properties from the parent class while adding new functionality in your new Script Include. In this case, we'll extend the `AbstractAjaxProcessor` class, an out-of-the-box (OOB) Script Include in ServiceNow.
+
+### Client Callable Script Include
+
+By extending the `AbstractAjaxProcessor` class, we create a client callable Script Include that can be used to handle AJAX requests from the client side. The `getParameter()` method is used to retrieve information sent from the client script, and the `getXML()` method is used to send information back to the client.
+
+### GlideAjax
+
+`GlideAjax` is a client-side API in ServiceNow used to call client callable Script Includes from client scripts or UI policies. It allows for asynchronous communication between the client and server.
+
+#### How to Define GlideAjax
+
+```javascript
+var ga = new GlideAjax('Name_of_the_Script_Include');
+ga.addParam('sysparm_name', 'Name_of_the_Method_in_Script_Include');
+ga.addParam('sysparm_variable', g_form.getValue('category'));
+ga.getXML(callbackFunction);
+```
+
+### Example Use Case
+
+**Use Case: Updating Email when Caller Changes**
+
+**Description:**
+- When the caller changes on an incident form, the associated email should also be updated.
+- This functionality is implemented using a client script and a client callable Script Include.
+
+**Client Script:**
+```javascript
+function onChange(control, oldValue, newValue, isLoading, isTemplate) {
+   if (isLoading || newValue === '') {
+      return;
+   }
+
+   var ga = new GlideAjax('getProblem');
+   ga.addParam('sysparm_name', 'getEmailID');
+   ga.addParam('sysparm_user_details', g_form.getValue('caller_id'));
+   ga.getXML(emailDetails);
+
+   function emailDetails(response) {
+       var emailID = response.responseXML.documentElement.getAttribute('answer');
+       g_form.setValue('u_email', emailID);
+   }
+}
+```
+
+**Script Include:**
+```javascript
+var getProblem = Class.create();
+getProblem.prototype = Object.extendsObject(AbstractAjaxProcessor, {
+    getEmailID: function() {
+        var user = this.getParameter('sysparm_user_details');
+        var gr = new GlideRecord('sys_user');
+        gr.addQuery('sys_id', user);
+        gr.query();
+        if (gr.next()) {
+            return gr.email;
+        }
+    },
+    type: 'getProblem'
+});
+```
+
 
 ### Conclusion
 
