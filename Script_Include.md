@@ -51,6 +51,65 @@ function updateWorkNotes(problemId, worknotes) {
 ```
 
 2. **Define a New Class**: Script Includes can define a new JavaScript class with its own set of properties and methods.
+-It is complex and contains multiple functions
+-Name of the class must be matched with the name of script include.
+-Can be called from both serve and client side.
+
+#### Use Case: Creating Associated Incident on Critical Problem Record Change
+
+**Description:**
+- When the priority of a problem record changes to "Critical", an associated incident will be created for the same problem record.
+- The incident will contain the caller name as the logged-in user's name and include the following information in the description:
+  i) All the task numbers attached to the current problem record.
+  ii) Names of the groups where the assignee of the problem record is part of.
+
+**Script Include:**
+```javascript
+var defineClass = Class.create();
+defineClass.prototype = {
+    initialize: function() {
+    },
+    getProblemTask: function(problem_id){
+        var pTask = [];
+        var gr = new GlideRecord('problem');
+        gr.addQuery('problem', problem_id);
+        gr.query();
+        if (gr.next()) {
+            pTask.push(gr.getDisplayName('number'));
+        }
+        return pTask;
+    },
+    getUserGroup: function(assigned_to){
+        var gMember = [];
+        var gr = new GlideRecord('sys_user_grmember');
+        gr.addQuery('user', assigned_to);
+        gr.query();
+        while (gr.next()) {
+            gMember.push(gr.getDisplayName('group'));
+        }
+        return gMember;
+    },
+    type: 'defineClass'
+};
+```
+
+**Business Rule:**
+```javascript
+(function executeRule(current, previous /*null when async*/) {
+    var mainobj = new defineClass();
+    if (current.priority == 1) { // Assuming priority 1 represents "Critical"
+        var gr = new GlideRecord('incident');
+        gr.initialize();
+        gr.problem_id = current.sys.id;
+        gr.short_description = 'Testing Classbase function';
+        gr.caller_id = gs.getUserID();
+        gr.description = 'Problem Task are ' + mainobj.getProblemTask(current.sys.id) + '. Groups of assignee are ' + mainobj.getUserGroup(current.assigned_to);
+        gr.insert();
+    }
+})(current, previous);
+```
+
+
 3. **Extend an Existing Class**: Script Includes can also extend an existing JavaScript class to add additional functionality or override existing methods.
 
 ### Conclusion
