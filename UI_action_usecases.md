@@ -28,44 +28,6 @@ action.setRedirectURL(current);
 gr.insert();
 ```
 
-### Use Case 2: Client Side UI Action
-
-**Description:**
-- Upon clicking a button labeled 'Send Email', a client-side UI Action will validate the email field in the incident form.
-- If the email field is empty or invalid, an error message will be displayed to the user.
-- If the email field is valid, the system will send an email to the specified recipient.
-
-**Client Side UI Action Script:**
-```javascript
-function sendEmail() {
-    var email = g_form.getValue('u_email');
-    if (!email || !validateEmail(email)) {
-        alert('Please enter a valid email address.');
-    } else {
-        // Send email logic here
-    }
-}
-
-function validateEmail(email) {
-    // Email validation logic here
-}
-```
-
-### Use Case 3: Server and Client Side UI Action
-
-**Description:**
-- A button labeled 'Mark as Resolved' will appear in the incident form.
-- Clicking the button will change the incident state to 'Resolved' and display a confirmation message to the user.
-- This UI Action will run both on the server side to update the incident state and on the client side to display the confirmation message.
-
-**UI Action Script (Both Server and Client Side):**
-```javascript
-if (gs.getUser().hasRole('itil')) {
-    current.state = 6; // Resolved state
-    current.update();
-    alert('Incident marked as resolved.');
-}
-```
 
 ### Conclusion
 
