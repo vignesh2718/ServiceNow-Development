@@ -123,8 +123,3 @@ function assign_IM() {
 ### Conclusion
 
 UI Actions in ServiceNow offer powerful capabilities for customizing and extending form functionalities. By leveraging UI Actions, administrators and developers can implement various actions, validations, and workflows to enhance user experience and streamline processes within ServiceNow instances.
-
-
-### Conclusion
-
-UI Actions in ServiceNow offer powerful capabilities for customizing and extending form functionalities. By leveraging UI Actions, administrators and developers can implement various actions, validations, and workflows to enhance user experience and streamline processes within ServiceNow instances.
