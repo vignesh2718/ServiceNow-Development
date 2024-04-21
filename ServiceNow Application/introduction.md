@@ -22,7 +22,7 @@
 
 ### When You Should Build an Application in the ServiceNow Platform?
 
-- When the data is structured and can be used in a RELATIONAL DATABASE.
+- When the data is structured and can be used in a relational database.
 - Where you need to interact with forms to different services.
 - Where you need to manage processes using different workflows.
 - Where you need to send notifications to users or groups of users.
