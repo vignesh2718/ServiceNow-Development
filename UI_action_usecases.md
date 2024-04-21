@@ -85,7 +85,44 @@ function assignToIM() {
 }
 ```
 
+### Use Case 3: Server and Client Side UI Action
 
+**Description:**
+- If reassignment count of an incident becomes more than 3, a button will appear mentioning 'Assign to IM'.
+- Once clicking the button, it will assign the incident to that IM Group (create a new group).
+
+**Condition in the UI Action:**
+```javascript
+current.reassignment_count > 3
+```
+
+**UI Action Script (Client Side and Server Side):**
+```javascript
+function assignToIM() {
+    if (g_form.getValue('priority') != 2) {
+        g_form.setValue('impact', 1);
+        g_form.setValue('urgency', 2);
+    }
+    if (g_form.getValue('category') != 'inquiry') {
+        g_form.setValue('category', 'inquiry');
+    }
+    gsftSubmit(null, g_form.getFormElement(), 'IM Group');
+}
+
+if (typeof window == 'undefined') {
+    assign_IM();
+}
+
+function assign_IM() {
+    current.assignment_group = gs.getProperty('getIM');
+    current.update();
+    action.setRedirectURL(current);
+}
+```
+
+### Conclusion
+
+UI Actions in ServiceNow offer powerful capabilities for customizing and extending form functionalities. By leveraging UI Actions, administrators and developers can implement various actions, validations, and workflows to enhance user experience and streamline processes within ServiceNow instances.
 
 
 ### Conclusion
