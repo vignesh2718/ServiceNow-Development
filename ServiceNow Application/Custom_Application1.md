@@ -75,3 +75,22 @@ WeV is a company specializing in AI-powered devices for construction workers, in
 **Outputs:**
 - Email notifications.
 - Reports and scheduled reports for tracking and analysis.
+
+## ServiceNow Studio
+
+It provides a powerfull integrated developement environment IDE for application developers to work on custom application in one centralized location.
+-Build Custom Applications: Create workflows , forms. and user interfaces for various business needs. 
+-Source control integration: integrate with external Git repositories like GitLab or Github for advanced version control management.
+-Perform Code Search - It is a built in feature that enables developers to quickly locate specifi code snippets, classes, functions, variables,or other elements within their application or acorss multiple applications.
+
+
+## Source Control 
+-Source control also known as version control, is a system for tracking and managing chnages made to application files over time.
+-Application files refers to database tables, scripts, flows,various configuration changes etc.
+
+
+## Why source control is better than update set?
+-Remote storgae of application files  using repository.
+-Create different branches for specific development work.
+-you can track changes.
+- No need of source instance or XML Files.
