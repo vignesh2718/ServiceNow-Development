@@ -96,13 +96,13 @@ It provides a powerfull integrated developement environment IDE for application 
 - No need of source instance or XML Files.
 
 
-## Requirements Part 1
+## Requirements Part 1a
 -If the state is delivered then only delivery date field should come up and it would be a mandatory field.
 -If quantity is greater than two , then business justification field should become mandatory.
 
-## Requirements Part 2
+## Requirements Part 1b
 -Once opening the device request table it should not display the section(Device Details and delivert details ) by default
 -Once the device Name field is filled up then these sections should become visible.
 
-## Requirements Part 3
+## Requirements Part 1c
 - Once you select the device name, the information in the device details tab should be auto filled up based on the record in the AI devices table.
